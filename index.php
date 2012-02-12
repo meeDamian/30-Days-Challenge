@@ -1,4 +1,10 @@
+<?php
+    require_once "libs/libs.inc";
+    require_once "_config.inc";
+?>
+
 <!DOCTYPE html>
+<!-- this site external address: http://goo.gl/ZDdzf -->
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -14,7 +20,7 @@
 
     <title>30 days challange</title>
 
-    <meta name="description" content="Take different photo every day for 30 days">
+    <meta name="description" content=" The challange to keep you busy for following 30 days. ">
     <meta name="author" content="Maurycy Damian Wasilewski">
 
     <!-- Mobile viewport optimized: h5bp.com/viewport -->
@@ -45,83 +51,61 @@
     </script>
 </head>
 <body>
-    <header>
 
-        <span id="h_left">
-            <span id="l_s-greeting">Witaj,</span>
-            <span id="l_v-name"></span>
-            <div id="l_menu">
-                <a href="#" id="me_s-more">więcej&gt;</a>
-                <div id="me_submenu">
-                    <a href="#" id="me_s-logout">wyloguj</a>
-                    <a href="#" id="me_s-changeLang">zmień język</a>
+    <? if($fb['on']): ?>
+        <!-- root node required by fb -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=<?=$fb['app_id'];?>";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <? endif; ?>
+
+    <!-- Top user bar -->
+    <header id="ubar"></header>
+
+    <!-- main|current content -->
+    <section id="main" role="main">
+
+        <section id="login_openid">
+
+            <? if($fb['on']): ?>
+                <div id="login_facebook">
+                    <div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1" scope="<?=$fb['scope'];?>"></div>
                 </div>
+            <? endif; ?>
+
+            <div id="login_google">
             </div>
-        </span>
 
-        <span id="h_right">
-            <span id="r_s-day">Dzień</span>
-            <span id="r_v-day">0</span>
-        </span>
+        </section>
 
-    </header>
+        <form id="login_site" action="jx/do.php" method="post">
+            <input type="hidden" name="action" value="login" />
+            <input type="email" name="l_email" placeholder="Your email address..." />
+            <input type="password" name="l_password" placeholder="Your password..." />
+            <input type="submit" name="l_submit" value="Login" />
+            <a href="#forget">forgotten password</a>
+        </form>
 
-    <div id="login">
+        <form id="register_site" action="jx/do.php" method="post">
+            <input type="hidden" name="action" value="register" />
+            <input type="email" name="r_email" placeholder="Your email address" />
+            <input type="email" name="r_email2" placeholder="Re-enter your email" />
+            <input type="password" name="r_password" placeholder="New password" />
+            <input type="submit" name="l_submit" value="Register" />
+        </form>
 
-        <h1 id="l_s-choose">Wybierz kim jesteś</h1>
+    </section>
 
-        <div id="l_list">
-
-            <a href="#ela" id="l_ela" class="l_circles l_user">
-                <span>Ela</span>
-            </a>
-
-            <a href="#maurycy" id="l_maurycy" class="l_circles l_user">
-                <span>Maurycy</span>
-            </a>
-
-            <a href="#monia" id="l_monia" class="l_circles l_user">
-                <span>Monia</span>
-            </a>
-
-            <a href="#cwel" id="l_cwel" class="l_circles l_user">
-                <span>Cwel</span>
-            </a>
-
-            <a href="#new" id="l_new" class="l_circles">
-                <span>+Nowy</span>
-            </a>
-
-            <div class="clear"></div>
-
-        </div>
-
-    </div>
-
-    <div id="main" role="main">
-
-        <h2 id="m_s-photos">Oto Twoje zdjęcia:</h2>
-
-        <table id="m_days">
-            <thead>
-                <tr id="d_labels">
-                    <th>PN</th><th>WT</th><th>ŚR</th><th>CZ</th><th>PT</th><th>SO</th><th>ND</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-        <!-- put this in current day in calendar instead here out of nowhere -->
-        <div id="file-uploader">
-            <noscript>
-                <p>Please enable JavaScript to use file uploader.</p>
-                <!-- or put a simple form for upload here -->
-            </noscript>
-        </div>
-    </div>
+    <!-- some footer stuff (send feedback, etc...) -->
     <footer>
 
     </footer>
+
     <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
         chromium.org/developers/how-tos/chrome-frame-getting-started -->
     <!--[if lt IE 7 ]>

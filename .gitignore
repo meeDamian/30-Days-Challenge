@@ -39,13 +39,12 @@ intermediate
 publish
 .idea
 
-# build script local files
-build/buildinfo.properties
-build/config/buildinfo.properties
-
 # KDE configs
 .directory
 
 # app cache
 cache/*
 !cache/readme.md
+vars/_db_.inc
+vars/_fb_.inc
+vars/_plus_.inc
