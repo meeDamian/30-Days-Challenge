@@ -12,7 +12,9 @@
     /// choose action
     $action = ((isset($_POST['action'])) ? ( (!empty($_POST['action'])) ? $_POST['action'] : false ) : false);
     switch($action) {
-        case 'log': jx_log(); break;
+        case 'log':         jx_log();           break;
+        case 'login':       legacy_login();     break;
+        case 'register':    legacy_register();  break;
         default: respond(false, 'invalid action');
     }
 
@@ -27,6 +29,18 @@
 
         if($msg) toLog($msg,'ajax');
         else respond('false', 'logged with empty msg');  // all saving already happens in respond(), so no need to double it
+    }
+
+    function legacy_login() {
+        header('Content-Type: application/json; charset=utf-8');
+        // check is user is_logged(); if so set proper cookies
+        // if anything on the way fails: remove all cookies|session data
+    }
+
+    function legacy_register() {
+        header('Content-Type: application/json; charset=utf-8');
+        // if user havn't already set account, create one for him and login him to the page right after that
+        // TODO: how to set autocomplete for browsers automatically ?
     }
 
 ?>

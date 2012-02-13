@@ -150,5 +150,12 @@ function __($name,$dest=false,$type="REQUEST") {
     }
 }
 
-
+/** checks if user is logged in **
+ *
+ **/
+function is_logged() {
+    // performs check whether user is logged in;
+    // if so returns true and sets proper values to user info array
+    // else returns false and clears user info array (in case)
+}
 ?>

@@ -28,19 +28,11 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
-
-    <script src="js/libs/head-0.96.load.min.js"></script>
-    <script>
-        head.js("js/libs/modernizr-2.0.6.min.js",
-                "//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js",
-                "js/mylibs/fileuploader.js",
-                "js/plugins.js",
-                "js/script.js"
-            );
-            // TODO: add this callback in case jQuery won't load from CDN:
-            //    function() {window.jQuery || head.js("js/libs/jquery-1.7.1.min.js");}
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="js/libs/modernizr-2.0.6.min.js"></script>
+    <script src="js/mylibs/fileuploader.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/script.js"></script>
 
     <!-- Asynchronous Google Analytics snippet. -->
     <script>
@@ -55,6 +47,7 @@
     <? if($fb['on']): ?>
         <!-- root node required by fb -->
         <div id="fb-root"></div>
+        <!-- init facebook js sdk -->
         <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
@@ -73,9 +66,7 @@
         <section id="login_openid">
 
             <? if($fb['on']): ?>
-                <div id="login_facebook">
-                    <div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1" scope="<?=$fb['scope'];?>"></div>
-                </div>
+                <div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1" scope="<?=$fb['scope'];?>"></div>
             <? endif; ?>
 
             <div id="login_google">
