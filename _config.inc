@@ -56,7 +56,4 @@
     if($gplus['on']) {
         // nothing to put here yet :(
     }
-
-
-    
 ?>

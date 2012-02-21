@@ -1,4 +1,4 @@
-<?php
+<?
     require_once "libs/libs.inc";
     require_once "_config.inc";
 ?>
@@ -69,20 +69,21 @@
                 <div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1" scope="<?=$fb['scope'];?>"></div>
             <? endif; ?>
 
-            <div id="login_google">
-            </div>
+            <div id="login_google"></div>
 
         </section>
 
-        <form id="login_site" action="jx/do.php" method="post">
+        <form id="login_site">
             <input type="hidden" name="action" value="login" />
-            <input type="email" name="l_email" placeholder="Your email address..." />
-            <input type="password" name="l_password" placeholder="Your password..." />
+            <input type="email" name="l_email" id="l_email" placeholder="Your email address..." />
+            <label for="l_email" id="l_email-l"></label>
+            <input type="password" name="l_password" id="l_password" placeholder="Your password..." />
+            <label for="l_password" id="l_password-l"></label>
             <input type="submit" name="l_submit" value="Login" />
-            <a href="#forget">forgotten password</a>
+            <a href="#forget" id="forgot_site">forgotten password</a>
         </form>
 
-        <form id="register_site" action="jx/do.php" method="post">
+        <form id="register_site">
             <input type="hidden" name="action" value="register" />
             <input type="email" name="r_email" placeholder="Your email address" />
             <input type="email" name="r_email2" placeholder="Re-enter your email" />

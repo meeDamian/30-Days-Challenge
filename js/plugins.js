@@ -16,6 +16,16 @@ window.log = function(){
 
 // Fix of JS negative numbers modulo bug:
 Number.prototype.mod=function(n){return((this%n)+n)%n;}
+Object.prototype.size=function(){var size=0,key;for(key in this) if(this.hasOwnProperty(key)) size++;return size;}
 
+// jQuery AJAX requests defaults
+$.ajaxSetup({ url:'jx/do.php', type:'post', dataType:'json',
+    error: function(jqXHR, textStatus, errorThrown) { console.log("error occured: "+jqXHR+"|"+textStatus+"|"+errorThrown); },
+    statusCode: {
+        404: function(){ console.log("Requested page inexists."); },
+        408: function(){ console.log("Requested page timeouted."); },
+        500: function(){ console.log("Internal server error on requested page."); }
+    }
+});
 
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
