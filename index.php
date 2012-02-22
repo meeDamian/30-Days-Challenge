@@ -75,11 +75,15 @@
 
         <form id="login_site">
             <input type="hidden" name="action" value="login" />
+
             <input type="email" name="l_email" id="l_email" placeholder="Your email address..." />
             <label for="l_email" id="l_email-l"></label>
+
             <input type="password" name="l_password" id="l_password" placeholder="Your password..." />
             <label for="l_password" id="l_password-l"></label>
+
             <input type="submit" name="l_submit" value="Login" />
+
             <a href="#forget" id="forgot_site">forgotten password</a>
         </form>
 

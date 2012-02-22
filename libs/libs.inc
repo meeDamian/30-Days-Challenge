@@ -4,6 +4,28 @@
      * WHICH ARE USED MORE THAN ONCE
      */
 
+/** set header mime type **
+ * SETS PROPER HEADER (MOSTLY FOR AJAX RESPONSES)
+ * ex. header('json');
+ **
+ * $type (string) => what kind of header should be set
+ *  - json      : used for most json responses
+ *  - html      : used when html chunk of code is being returned
+ *  - script    : used when JS scripts are being loaded
+ *  - text      : used in every other case (plain text is used)
+ **
+ * returns nothing;
+ * > sets proper html headers and passes execution further
+ **/
+function head($type="text") {
+    switch(strtolower($type)) {
+        case 'json': header('Content-Type: application/json; charset=utf-8'); break;
+        case 'script': header('Content-Type: application/javascript; charset=utf-8'); break;
+        case 'html': header('Content-Type: text/html; charset=utf-8'); break;
+        default: header('Content-Type: text/plain; charset=utf-8'); break;
+    }
+}
+
 /** respond **
  * RESPOND WITH VALID JSON STRING (FROM AJAX)
  * ex. respond(true, "everything ok", array('id'=>"some_id",'name'=>'some_name'));

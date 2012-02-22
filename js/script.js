@@ -27,7 +27,11 @@ function manage_login() {
         if((email=$('#l_email').val()).length<5) err['l_email']="Too short email";
         if((pass=$('#l_password').val()).length<6) err['l_password']="Too short password";
 
-        return set_login_error(err);
+        if( err.size() ) return set_login_error(err);
+
+        $.ajax({data:$(this).serialize(),success:function(data){
+            console.log(data);
+        }});
 
         // send $.ajax() with login|password
             // process responce
@@ -39,12 +43,17 @@ function manage_login() {
         return false;
     });
 
-    $('#register_site').submit(function(){
+    $('#register_site').submit(function() {
+
+        $.ajax({
+            data: {action: "script"},
+            dataType: 'script'
+        });
 
         return false;
     });
 
-    $('#forgot_site').click(function(){
+    $('#forgot_site').click(function() {
 
         return false;
     });
