@@ -76,10 +76,10 @@
         <form id="login_site">
             <input type="hidden" name="action" value="login" />
 
-            <input type="email" name="l_email" id="l_email" placeholder="Your email address..." />
+            <input type="email" name="email" id="l_email" pattern="<?=EMAIL_REGEXP;?>" placeholder="Your email address..." />
             <label for="l_email" id="l_email-l"></label>
 
-            <input type="password" name="l_password" id="l_password" placeholder="Your password..." />
+            <input type="password" name="password" id="l_password" placeholder="Your password..." />
             <label for="l_password" id="l_password-l"></label>
 
             <input type="submit" name="l_submit" value="Login" />
@@ -89,9 +89,16 @@
 
         <form id="register_site">
             <input type="hidden" name="action" value="register" />
-            <input type="email" name="r_email" placeholder="Your email address" />
-            <input type="email" name="r_email2" placeholder="Re-enter your email" />
-            <input type="password" name="r_password" placeholder="New password" />
+
+            <input type="email" name="email" id="r_email" pattern="<?=EMAIL_REGEXP;?>" placeholder="Your email address" />
+            <label for="r_email" id="r_email-l"></label>
+
+            <input type="email" name="email2" id="r_email2" pattern="<?=EMAIL_REGEXP;?>" placeholder="Re-enter your email" />
+            <label for="r_email2" id="r_email2-l"></label>
+
+            <input type="password" name="password" id="r_password" placeholder="New password" />
+            <label for="r_password" id="r_password-l"></label>
+
             <input type="submit" name="l_submit" value="Register" />
         </form>
 

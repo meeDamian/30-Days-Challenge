@@ -44,16 +44,31 @@ function manage_login() {
     });
 
     $('#register_site').submit(function() {
+        var email,pass,err=Object();
 
-        $.ajax({
-            data: {action: "script"},
-            dataType: 'script'
-        });
+        if( !Modernizr.inputtypes.email ) {
+            // validate email
+        }
+
+        if((email=$('#r_email').val()).length<5) err['r_email']="Too short email";
+        if( $('#r_email2').val() != $('#r_email').val() ) err['r_email2']="Emails don't match.";
+        if((pass=$('#r_password').val()).length<6) err['r_password']="Too short password";
+
+        if( err.size() ) return set_login_error(err);
+
+        $.ajax({data:$(this).serialize(),success:function(data){
+            console.log(data);
+        }});
 
         return false;
     });
 
     $('#forgot_site').click(function() {
+
+        $.ajax({
+            data: {action: "script"},
+            dataType: 'script'
+        });
 
         return false;
     });

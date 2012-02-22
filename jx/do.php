@@ -17,7 +17,7 @@
         case 'log':         jx_log();           break;
         case 'login':       legacy_login();     break;
         case 'register':    legacy_register();  break;
-        case 'properScript':penis();            break;
+        case 'script':      giveScript();       break;
         default: respond(false, 'invalid action');
     }
 
@@ -46,13 +46,18 @@
 
     function legacy_register() {
         head('json');
+
+        respond(false, 'not implemented yet');
+        // check if this email hasn't been already used?
+        //  - yes, by legacy_register  => prompt to login or remind password instead
+        //  - yes, with social network => login and prompt to login to that network and merge accounts
+        //  - no, newer-ever seen that email b4 && everything else is valid => create account and login
         // if user havn't already set account, create one for him and login him to the page right after that
-        // TODO: how to set autocomplete for browsers automatically ?
     }
 
-    function penis() {
+    function giveScript() {
         head('script');
-        ?>alert("penis");<?
+        ?>alert("new script successfully loaded!");<?
     }
 
 ?>
