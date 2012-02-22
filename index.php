@@ -33,14 +33,8 @@
     <script src="js/mylibs/fileuploader.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/script.js"></script>
-
-    <!-- Asynchronous Google Analytics snippet. -->
-    <script>
-        var _gaq=[['_setAccount','UA-12389124-4'],['_trackPageview']];
-        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=('https:'==location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
+    <!-- Google Analytics -->
+    <script>var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-12389124-4']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
 </head>
 <body>
 
