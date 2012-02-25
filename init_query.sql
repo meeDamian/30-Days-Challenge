@@ -7,8 +7,8 @@ CREATE TABLE 30users (
     id                  BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
 
     email               TEXT,
-    pass_hash           VARCHAR( 42 ),
-    salt                VARCHAR( 50 ),
+    pass_hash           VARCHAR( 42 ), -- sha1 hash
+    salt                VARCHAR( 50 ), -- 42-signs salt
 
     PRIMARY             KEY( id )
 );
