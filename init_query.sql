@@ -4,13 +4,30 @@ USE 30days;
 
 -- DROP TABLE IF EXISTS 30users;
 CREATE TABLE 30users (
-    id                  BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
+    uid                  BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
 
     email               TEXT,
     pass_hash           VARCHAR( 42 ), -- sha1 hash
     salt                VARCHAR( 50 ), -- 42-signs salt
 
-    PRIMARY             KEY( id )
+    joined              TIMESTAMP NOT NULL DEFAULT NOW(),
+    visited             TIMESTAMP, -- time of last visit
+
+    name                VARCHAR(255),
+    locale              BIGINT UNSIGNED,
+
+    PRIMARY KEY( uid ),
+    FOREIGN KEY( locale ) REFERENCES 30locales( id )
+);
+
+CREATE TABLE 30locales (
+    id                  BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
+    lang                VARCHAR(10) NOT NULL,
+    region              VARCHAR(10) NOT NULL,
+    string              VARCHAR(20) NOT NULL,
+
+    PRIMARY KEY( id ),
+    UNIQUE( lang, region )
 );
 
 -- DROP TABLE IF EXISTS 30facebook;
