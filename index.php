@@ -34,7 +34,7 @@
     <script src="js/plugins.js"></script>
     <script src="js/script.js"></script>
     <!-- Google Analytics -->
-    <script>var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-12389124-4']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+    <script>var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-29448228-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
 </head>
 <body>
 
@@ -60,7 +60,9 @@
         <section id="login_openid">
 
             <? if($fb['on']): ?>
-                <div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1" scope="<?=$fb['scope'];?>"></div>
+                <div id="login_facebook">
+                    <div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1" scope="<?=$fb['scope'];?>"></div>
+                </div>
             <? endif; ?>
 
             <div id="login_google"></div>
