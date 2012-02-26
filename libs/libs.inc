@@ -186,4 +186,33 @@ function is_logged() {
     // if so returns true and sets proper values to user info array
     // else returns false and clears user info array (in case)
 }
+
+/**
+ *
+ **/
+function make_hash( $pass, $salt, $email, $linear=false ) {
+
+    $numb = "";
+    foreach( str_split($salt) as $char ) if( is_numeric( $char )) $numb .= $char;
+
+    mt_srand( (int)$numb );
+    $algs = array('whirlpool', 'sha512', 'sha384', 'ripemd320', 'snefru256', 'gost', 'snefru', 'ripemd256', 'sha256', 'sha224');
+
+    // check if all algorithms are available
+    foreach($algs as $hash) if(!in_array($hash,hash_algos())) throw new Exception("Unsupported algorithms.");
+
+    $hash = $pass;
+    foreach( str_split($salt) as $i => $char ) {
+
+        $str = $hash . $char;
+
+        if( $i%3 == 0 ) $str .= $email;
+        if( $i%7 == 0 ) $str .= mt_rand( $hash );
+
+        $hash = ( $linear ) ?
+            hash( $algs[ $i%count($algs) ], $str, false ) :
+            make_hash( $hash, $salt, $email, true );
+    }
+    return ( $linear ) ? $hash : sha1($hash);
+}
 ?>
