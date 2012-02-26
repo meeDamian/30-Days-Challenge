@@ -107,7 +107,7 @@
         <!-- temporary not implemented-yet-info section -->
         <section id="not-yet-implemented">
             <h2>Oups, error :(</h2>
-            <p>This function has not been implemented yet...</p>
+            <p>This function has not been implemented yet or is not working for some other reason (facebook issues mostly)...</p>
         </section>
     </footer>
 

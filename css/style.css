@@ -326,8 +326,9 @@ till here for inspection must they go!
 
 #not-yet-implemented {
     position: absolute;
+    display: none;
     top: 150px;
-    left: 200px;
+    left: 300px;
     width: 500px;
     height: 200px;
     border: 4px solid red;

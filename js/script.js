@@ -1,3 +1,11 @@
+function init_err() {
+    var err = {};
+    Object.defineProperty(err, "size", {
+            get: function(){var size=0,key;for(key in this) if(this.hasOwnProperty(key)) size++;return size;}
+        }
+    );
+    return err;
+}
 function set_login_error(errs) {
     for(var key in errs) {
         if( errs.hasOwnProperty(key) ) {
@@ -15,10 +23,11 @@ function set_login_error(errs) {
     }
     return false;
 }
+
 function manage_login() {
 
     $('#login_site').submit(function() {
-        var email,pass,err=Object();
+        var email,pass,err=init_err();
 
         if( !Modernizr.inputtypes.email ) {
             // validate email
@@ -27,8 +36,7 @@ function manage_login() {
         if((email=$('#l_email').val()).length<5) err['l_email']="Too short email";
         if((pass=$('#l_password').val()).length<6) err['l_password']="Too short password";
 
-        // TODO: jquery has errors and me need to fix it ;(
-        if( err.count() ) return set_login_error(err);
+        if( err.size ) return set_login_error(err);
 
         $.ajax({data:$(this).serialize(),success:function(data){
             console.log(data);
@@ -45,7 +53,7 @@ function manage_login() {
     });
 
     $('#register_site').submit(function() {
-        var email,pass,err=Object();
+        var email,pass,err=init_err();
 
         if( !Modernizr.inputtypes.email ) {
             // validate email
@@ -55,8 +63,7 @@ function manage_login() {
         if( $('#r_email2').val() != $('#r_email').val() ) err['r_email2']="Emails don't match.";
         if((pass=$('#r_password').val()).length<6) err['r_password']="Too short password";
 
-        // TODO: jquery has errors and me need to fix it ;(
-        if( err.count() ) return set_login_error(err);
+        if( err.size ) return set_login_error(err);
 
         $.ajax({data:$(this).serialize(),success:function(data){
             console.log(data);
