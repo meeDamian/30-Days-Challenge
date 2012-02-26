@@ -16,7 +16,9 @@ window.log = function(){
 
 // Fix of JS negative numbers modulo bug:
 Number.prototype.mod=function(n){return((this%n)+n)%n;}
-Object.prototype.size=function(){var size=0,key;for(key in this) if(this.hasOwnProperty(key)) size++;return size;}
+
+// TODO: jquery has errors and me need to fix it ;(
+//Object.prototype.count=function(){var size=0,key;for(key in this) if(this.hasOwnProperty(key)) size++;return size;}
 
 // jQuery AJAX requests defaults
 $.ajaxSetup({url:'jx/do.php',type:'post',dataType:'json',

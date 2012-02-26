@@ -1,4 +1,5 @@
 <?
+    $ajax = false;
     require_once "libs/libs.inc";
     require_once "_config.inc";
 ?>
@@ -60,12 +61,12 @@
         <section id="login_openid">
 
             <? if($fb['on']): ?>
-                <div id="login_facebook">
-                    <div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1" scope="<?=$fb['scope'];?>"></div>
-                </div>
+                <a id="login_facebook_btn" class="openid_btn" title="log in with Facebook" href="<?=$fb['loginUrl'];?>"></a>
             <? endif; ?>
 
-            <div id="login_google"></div>
+            <a id="login_google_btn" class="openid_btn"></a>
+
+            <a id="login_openid_btn" class="openid_btn"></a>
 
         </section>
 
@@ -103,6 +104,11 @@
     <!-- some footer stuff (send feedback, etc...) -->
     <footer>
 
+        <!-- temporary not implemented-yet-info section -->
+        <section id="not-yet-implemented">
+            <h2>Oups, error :(</h2>
+            <p>This function has not been implemented yet...</p>
+        </section>
     </footer>
 
     <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.

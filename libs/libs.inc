@@ -3,7 +3,8 @@
      * ALL REQUIRED PHP CONSTANTS
      * WHICH ARE USED MORE THAN ONCE
      */
-    define("EMAIL_REGEXP", "^((?:(?:(?:\w[\.\-\+]?)*)\w)+)\@((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$");
+define("EMAIL_REGEXP", "^((?:(?:(?:\w[\.\-\+]?)*)\w)+)\@((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$");
+
 
      /*
      * ALL REQUIRED PHP LIBRARIES

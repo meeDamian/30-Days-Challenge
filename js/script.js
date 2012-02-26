@@ -27,7 +27,8 @@ function manage_login() {
         if((email=$('#l_email').val()).length<5) err['l_email']="Too short email";
         if((pass=$('#l_password').val()).length<6) err['l_password']="Too short password";
 
-        if( err.size() ) return set_login_error(err);
+        // TODO: jquery has errors and me need to fix it ;(
+        if( err.count() ) return set_login_error(err);
 
         $.ajax({data:$(this).serialize(),success:function(data){
             console.log(data);
@@ -54,7 +55,8 @@ function manage_login() {
         if( $('#r_email2').val() != $('#r_email').val() ) err['r_email2']="Emails don't match.";
         if((pass=$('#r_password').val()).length<6) err['r_password']="Too short password";
 
-        if( err.size() ) return set_login_error(err);
+        // TODO: jquery has errors and me need to fix it ;(
+        if( err.count() ) return set_login_error(err);
 
         $.ajax({data:$(this).serialize(),success:function(data){
             console.log(data);
@@ -75,9 +77,20 @@ function manage_login() {
 }
 
 
+function not_yet_implemented() {
+    $('.openid_btn').click(function(){
+        $('#not-yet-implemented').fadeIn('fast', function(){
+            $(this).delay(600).fadeOut();
+        });
+        return false;
+    });
+}
 
 $(function() {
 
     manage_login();
 
+    
+
+    not_yet_implemented();
 });

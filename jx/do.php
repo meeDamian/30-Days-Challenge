@@ -1,4 +1,5 @@
 <?
+    $ajax = true;
     include "../libs/libs.inc";
     /*
      * ALL CUSTOM AJAX REFERENCES HAPPENS HERE

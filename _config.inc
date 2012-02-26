@@ -2,11 +2,11 @@
     $lang = "en";
     $URL = "//".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
+
     /*********************************
      * Database connection
      * - $db array is in vars/_db_.inc
      *********************************/
-
     require_once "vars/_db_.inc";
     if($db['on']) {
 
@@ -20,7 +20,7 @@
         }
 
         // raport error if it's not test
-        if(!$test and (!$db_c or !$db_s)) {
+        if(!$ajax and (!$db_c or !$db_s)) {
             header('HTTP/1.0 500 Internal Server Error');
             exit("<h1>500 Internal Server Error</h1>\n<p>The server encountered an unexpected condition which prevented it from fulfilling the request. (".((!$db_c)?"connect":"select").")</p>");
         }
@@ -30,7 +30,6 @@
     /*************************
      * Manage reference stats
      *************************/
-
     session_start();
     if(isset($_GET['utm_source'])) {
         $_SESSION['source'] = $_GET['utm_source'];
@@ -42,12 +41,24 @@
     /********************
      * Facebook settings
      ********************/
-
     require_once "vars/_fb_.inc";
     if($fb['on']) {
-        // do somfink hir
-    }
+        require_once $fb['sdk'];
 
+        $facebook = new Facebook(array(
+            'appId'  => $fb['id'],
+            'secret' => $fb['secret'],
+            'cookie' => true
+        ));
+
+        $user = $facebook->getUser();
+
+        if ($user) $fb['logoutUrl'] = $facebook->getLogoutUrl();
+        else $fb['loginUrl'] = $facebook->getLoginUrl(array('scope'=>$fb['scope']));
+
+    }
+    
+    
     /********************
      * Google+ settings
      ********************/
