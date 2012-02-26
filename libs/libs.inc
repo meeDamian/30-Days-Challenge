@@ -187,8 +187,16 @@ function is_logged() {
     // else returns false and clears user info array (in case)
 }
 
-/**
- *
+/** generates hash **
+ * RETURNS NOT-REALLY-EASY-TO-BREAK HASH OF A PASSWORD
+ * ex. make_hash('mySuper5ecur3Pa5S', '346e503849063f5123f11750120dc787cd2c336c', 'damian.wasilewski@gmail.com');
+ **
+ * $pass => password provided by user
+ * $salt => salt generated for each user individually (random sha1 hash)
+ * $email => user's current email (remember to regenerate hash when password changes)
+ * $linear => used only in recursive calls
+ **
+ * returns string similar to sha1, but lil bit more secure [=
  **/
 function make_hash( $pass, $salt, $email, $linear=false ) {
 
@@ -213,6 +221,6 @@ function make_hash( $pass, $salt, $email, $linear=false ) {
             hash( $algs[ $i%count($algs) ], $str, false ) :
             make_hash( $hash, $salt, $email, true );
     }
-    return ( $linear ) ? $hash : sha1($hash);
+    return ( $linear ) ? $hash : sha1( $hash );
 }
 ?>
