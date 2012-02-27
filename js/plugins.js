@@ -19,7 +19,7 @@ Number.prototype.mod=function(n){return((this%n)+n)%n;}
 
 // jQuery AJAX requests defaults
 $.ajaxSetup({url:'jx/do.php',type:'post',dataType:'json',
-    error:function(jqXHR,textStatus,errorThrown){console.log({textStatus:textStatus,errorThrown: errorThrown,details: jqXHR});},
+    error:function(jqXHR,textStatus,errorThrown){console.log({textStatus:textStatus, errorThrown:errorThrown, details:jqXHR});},
     statusCode:{
         404:function(){console.log("Requested page inexists.");},
         408:function(){console.log("Requested page timeouted.");},

@@ -20,9 +20,13 @@
         }
 
         // raport error if it's not test
-        if(!$ajax and (!$db_c or !$db_s)) {
-            header('HTTP/1.0 500 Internal Server Error');
-            exit("<h1>500 Internal Server Error</h1>\n<p>The server encountered an unexpected condition which prevented it from fulfilling the request. (".((!$db_c)?"connect":"select").")</p>");
+        if( !$db_c or !$db_s ) {
+            if( !$ajax ) {
+                header('HTTP/1.0 500 Internal Server Error');
+                exit("<h1>500 Internal Server Error</h1>\n<p>The server encountered an unexpected condition which prevented it from fulfilling the request. (".((!$db_c)?"connect":"select").")</p>");
+            } else {
+                respond(false, "No connection to db can be established.");
+            }
         }
     }
 
@@ -57,8 +61,8 @@
         else $fb['loginUrl'] = $facebook->getLoginUrl(array('scope'=>$fb['scope']));
 
     }
-    
-    
+
+
     /********************
      * Google+ settings
      ********************/

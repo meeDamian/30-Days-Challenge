@@ -1,6 +1,8 @@
 <?
     $ajax = true;
-    include "../libs/libs.inc";
+    require_once "../libs/libs.inc";
+    require_once "../_config.inc";
+
     /*
      * ALL CUSTOM AJAX REFERENCES HAPPENS HERE
      *
@@ -14,19 +16,26 @@
      * choose action
      ************* **/
     $action = ((isset($_POST['action'])) ? ( (!empty($_POST['action'])) ? $_POST['action'] : false ) : false);
+
+    if( !$action ) header("Location: /404.html");
+
     switch($action) {
         case 'log':         jx_log();           break;
         case 'login':       legacy_login();     break;
         case 'register':    legacy_register();  break;
         case 'script':      giveScript();       break;
-        default: respond(false, 'invalid action');
+        default:            invalid_action();   break;
     }
 
     /** ****************************
      * perform actions chosen above
      **************************** **/
 
-    // save to log
+     function invalid_action() {
+        head('json');
+        respond(false, 'invalid action');
+     }
+
     function jx_log() {
         head('json');
 
@@ -47,8 +56,9 @@
 
     function legacy_register() {
         head('json');
-
         respond(false, 'not implemented yet');
+
+        
         // check if this email hasn't been already used?
         //  - yes, by legacy_register  => prompt to login or remind password instead
         //  - yes, with social network => login and prompt to login to that network and merge accounts
